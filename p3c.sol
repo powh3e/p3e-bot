@@ -1,20 +1,19 @@
 pragma solidity ^0.4.20;
 
 /*
-* ==================================================*
-*         _____     _        _               _      
-*     _ __|___ /  __| |   ___| | __ _ ___ ___(_) ___ 
-*    | '_ \ |_ \ / _` |  / __| |/ _` / __/ __| |/ __|
-*    | |_) |__) | (_| | | (__| | (_| \__ \__ \ | (__ 
-*    | .__/____/ \__,_|  \___|_|\__,_|___/___/_|\___|
-*    |_|                                             
-* ==================================================*
+*   █████╗  ██████╗ ██╗    ██╗██╗  ██╗██████╗ ██╗  ██╗
+*   ██╔══██╗██╔═══██╗██║    ██║██║  ██║╚════██╗╚██╗██╔╝
+*   ██████╔╝██║   ██║██║ █╗ ██║███████║ █████╔╝ ╚███╔╝ 
+*   ██╔═══╝ ██║   ██║██║███╗██║██╔══██║ ╚═══██╗ ██╔██╗ 
+*   ██║     ╚██████╔╝╚███╔███╔╝██║  ██║██████╔╝██╔╝ ██╗
+*   ╚═╝      ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝
+*                                                   
 * -> What?
-* Deployment of Proof of Weak Hands (P3D) contract on Ethereum Classic.
+* Deployment of Proof of Weak Hands (P3D) contract on Expanse network.
 * See ETH: 0xb3775fb83f7d12a36e0475abdd1fca35c091efbe for original.
 * -> What is different from original:
-* Ticker symbol: P3D -> P3C
-* Name: PowH3D -> PowH3C
+* Ticker symbol: P3D -> P3X
+* Name: PowH3D -> PowH3X
 * Remove ability for administrator to change state (name, ticker symbol, masternode requirement)
 * Reduce masternode requirment to smallest possible, 1 wei worth of token.
 * Remove initialWhalePhase because no ambassadors or administrators. Pure autonomy.
@@ -25,7 +24,7 @@ pragma solidity ^0.4.20;
 * - swagg (concept design/feedback/management)
 * - Anonymous#1 (main site/web3/test cases)
 * - Anonymous#2 (math formulae/whitepaper)
-* - Anonymous#3 (transition to ETC)
+* - Anonymous#3 (transition to EXP)
 * - Anonymous#4 (inspiration)
 * -> Who has audited & approved the projected:
 * - Arc
@@ -93,11 +92,11 @@ contract Hourglass {
     /*=====================================
     =            CONFIGURABLES            =
     =====================================*/
-    string public name = "PoWH3C";
-    string public symbol = "P3C";
+    string public name = "PoWH3X";
+    string public symbol = "P3X";
     uint8 constant public decimals = 18;
     uint8 constant internal dividendFee_ = 10;
-    uint256 constant internal tokenPriceInitial_ = 0.0000001 ether;
+    uint256 constant internal tokenPriceInitial_ = 0.00000001 ether;
     uint256 constant internal tokenPriceIncremental_ = 0.00000001 ether;
     uint256 constant internal magnitude = 2**64;
     
@@ -313,57 +312,6 @@ contract Hourglass {
        
     }
     
-    // These do nothing and are only left in for ABI comaptibility reasons.
-    /*----------  ADMINISTRATOR ONLY FUNCTIONS  ----------*/
-    /**
-     * In case the amassador quota is not met, the administrator can manually disable the ambassador phase.
-     */
-    function disableInitialStage()
-        onlyAdministrator()
-        public
-    {
-        return;
-    }
-    
-    /**
-     * In case one of us dies, we need to replace ourselves.
-     */
-    function setAdministrator(bytes32 _identifier, bool _status)
-        onlyAdministrator()
-        public
-    {
-        return;
-    }
-    
-    /**
-     * Precautionary measures in case we need to adjust the masternode rate.
-     */
-    function setStakingRequirement(uint256 _amountOfTokens)
-        onlyAdministrator()
-        public
-    {
-        return;
-    }
-    
-    /**
-     * If we want to rebrand, we can.
-     */
-    function setName(string _name)
-        onlyAdministrator()
-        public
-    {
-        return;
-    }
-    
-    /**
-     * If we want to rebrand, we can.
-     */
-    function setSymbol(string _symbol)
-        onlyAdministrator()
-        public
-    {
-        return;
-    }
 
     
     /*----------  HELPERS AND CALCULATORS  ----------*/
